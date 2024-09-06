@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import HTMLFlipBook from 'react-pageflip';
-import { ChevronLeft, ChevronRight, Home } from 'lucide-react'; // Home 아이콘 추가
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import HTMLFlipBook from 'react-pageflip';
 import './MyBook.css';
-import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 useNavigate 추가
 
 const loadingImages = [
     '/img/loading2.png',
@@ -11,66 +10,48 @@ const loadingImages = [
     '/img/loading3.png'
 ];
 
-
 const MyBook = () => {
     const [page, setPage] = useState(0);
-    // const [storyData, setStoryData] = useState(null);
-    // 오류주의 !!! - 서버에서는 배열로 받음
     const [storyData, setStoryData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [loadedImages, setLoadedImages] = useState({}); // 이미지 로드 상태 저장
-    const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 추가
-    const [showModal, setShowModal] = useState(false); // 모달 상태 추가
+    const [loadedImages, setLoadedImages] = useState({});
+    const navigate = useNavigate();
+    const { storyId } = useParams(); // URL에서 storyId 가져옴
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // 하드코딩된 서버 URL로 데이터를 요청
-                const response = await axios.get(`http://ec2-43-200-211-225.ap-northeast-2.compute.amazonaws.com:3000/api/fairytale/entire`);
-                // 응답 데이터 저장
-                setStoryData(response.data);
-                setIsLoading(false); // 데이터 로드 완료 시 로딩 상태 해제
+                // 전체 데이터를 요청
+                // const response = await axios.get(`http://ec2-43-200-211-225.ap-northeast-2.compute.amazonaws.com:3000/api/fairytale/entire`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/fairytale/entire`);
+                const story = response.data.find(story => story.storyId === parseInt(storyId, 10)); // storyId로 필터링
+                if (story) {
+                    setStoryData(story);
+                } else {
+                    console.error('해당 storyId에 해당하는 데이터가 없습니다.');
+                }
+                setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching story data:', error);
-                setIsLoading(false); // 오류 발생 시에도 로딩 상태 해제
+                setIsLoading(false);
             }
         };
+        fetchData();
+    }, [storyId]);
 
-        fetchData(); // 데이터 요청 함수 호출
-    }, []); // 의존성 배열은 빈 배열로 설정, 컴포넌트 마운트 시에만 실행
-
-    // 페이지 생성 함수 수정: storyData가 배열임을 감안하여 처리
     const generatePages = () => {
-        if (storyData.length > 0) {
-            return storyData[0].parts.map((part) => ({
+        if (storyData && storyData.parts) {
+            return storyData.parts.map((part) => ({
                 content: part.content,
-                image: part.imageUri // 서버에서 온 데이터의 imageUri 사용
+                image: part.imageUri
             }));
         } else {
-            // 로딩 중일 때 임시 이미지를 순차적으로 표시
             return Array(10).fill(null).map((_, index) => ({
                 content: "열심히 그림 그리는 중...",
                 image: loadingImages[index % loadingImages.length]
             }));
         }
     };
-
-
-    // const generatePages = () => {
-    //     if (storyData && storyData.parts) {
-    //         return storyData.parts.map((part) => ({
-    //             content: part.content,
-    //             //오류주의!!! -  여기 url 을 uri 로 보냄 서버에서는 오류 있을수도 있으니 확인할것
-    //             image: part.imageUri
-    //         }));
-    //     } else {
-    //         // 로딩 중일 때 페이지당 하나의 로딩 이미지를 순차적으로 표시
-    //         return Array(10).fill(null).map((_, index) => ({
-    //             content: "열심히 그림 그리는 중...",
-    //             image: loadingImages[index % loadingImages.length] // 각 페이지마다 로딩 이미지를 순차적으로 표시
-    //         }));
-    //     }
-    // };
 
     const pages = generatePages();
 
@@ -79,7 +60,6 @@ const MyBook = () => {
     };
 
     const handleImageLoad = (index) => {
-        // 이미지가 로드되면 loadedImages 상태에 추가
         setLoadedImages((prev) => ({
             ...prev,
             [index]: true
@@ -87,30 +67,26 @@ const MyBook = () => {
     };
 
     const renderImage = (image, index) => {
-        // 이미지가 로드되지 않았으면 로딩 이미지 표시
         if (isLoading || !loadedImages[index]) {
             return (
                 <div className="mybook-page-image" style={{ backgroundImage: `url(${loadingImages[index % loadingImages.length]})` }}>
-                    {/* 실제 이미지가 로드되면 handleImageLoad 실행 */}
                     {image && (
                         <img
                             src={image}
                             alt=""
                             onLoad={() => handleImageLoad(index)}
-                            style={{ display: 'none' }} // 이미지가 로드될 때까지 숨김
+                            style={{ display: 'none' }}
                         />
                     )}
                 </div>
             );
         } else {
-            // 이미지가 로드되었으면 실제 이미지 표시
             return (
                 <div className="mybook-page-image" style={{ backgroundImage: `url(${image})` }}></div>
             );
         }
     };
 
-    // 마지막 장 표지에 "리뷰쓰기!" 버튼 추가
     const renderLastPage = () => {
         return (
             <div className="mybook-fairy-tale-page">
@@ -129,24 +105,8 @@ const MyBook = () => {
         );
     };
 
-    const handleShareClick = () => {
-        setShowModal(true);
-        setTimeout(() => {
-            setShowModal(false);
-            navigate('/review');
-        }, 2000); // 2초 후 모달 사라짐
-    };
-
-
     return (
-
-
         <div className="mybook-container">
-            {/* 상단 오른쪽에 홈 버튼 추가 */}
-
-            {/*<button className="home-button" onClick={() => navigate('/')}>*/}
-            {/*    <Home size={32}/>*/}
-            {/*</button>*/}
             <HTMLFlipBook
                 width={400}
                 height={600}
@@ -172,11 +132,9 @@ const MyBook = () => {
                         </div>
                     </div>
                 ))}
-                {/* 마지막 장 표지에 리뷰쓰기 버튼 */}
                 {renderLastPage()}
             </HTMLFlipBook>
         </div>
-
     );
 };
 

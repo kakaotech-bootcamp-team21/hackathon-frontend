@@ -16,7 +16,8 @@ const App = () => {
         <div className="app">
           <Routes>
             <Route path="/start" element={<Home />} />
-            <Route path="/mybook" element={<MyBook />} />
+            {/*<Route path="/mybook" element={<MyBook />} />*/}
+              <Route path="/mybook/:storyId" element={<MyBook />} /> {/* 동적 경로 설정 */}
             <Route path="/test" element={<MyBook />} />
             <Route path="/book" element={<Book />} />
             <Route path="/" element={<Start />} />

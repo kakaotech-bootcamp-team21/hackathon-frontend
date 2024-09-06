@@ -22,5 +22,5 @@ const Loading = () => {
         </div>
     );
 };
-
+// http://ec2-43-200-211-225.ap-northeast-2.compute.amazonaws.com:3000/api/fairytale/entire/22
 export default Loading;
