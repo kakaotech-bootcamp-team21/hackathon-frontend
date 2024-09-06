@@ -10,8 +10,11 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [keyword, setKeyword] = useState('');
     const [message, setMessage] = useState('');
+    const [title, setTitle] = useState('');
+    const [ifCondition, setIfCondition] = useState('');
 
-    const handleSubmit = async (e) => {
+    // 이야기 창조하기 버튼을 눌렀을 때 POST 요청
+    const handleCreateStory = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         try {
@@ -28,37 +31,79 @@ const Home = () => {
         }
     };
 
+    // 기존 동화를 각색하기 버튼을 눌렀을 때 POST 요청
+    const handleAdaptStory = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/fairytale/origin`, {
+                title,
+                ifCondition
+            });
+            const adaptedStoryId = response.data.storyId; // 서버에서 받은 storyId
+            setIsLoading(false);
+            navigate(`/mybook/${adaptedStoryId}`); // 각색된 storyId를 URL에 포함하여 전달
+        } catch (error) {
+            console.error('Error sending request:', error.response ? error.response.data : error.message);
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div className="home-container">
             {isLoading && <Loading />}
-            <form onSubmit={handleSubmit} className="home-storybook-form">
+            <form className="home-storybook-form">
+                {/* 이야기 창조를 위한 섹션을 왼쪽으로 이동 */}
                 <div className="home-form-section home-left-section">
-                    <h2 className="home-section-title">마법의 동화책이란?</h2>
-                    <div>마법의 동화책 설명이 여기에 들어갑니다.</div>
-                </div>
-                <div className="home-form-section home-right-section">
-                    <h2 className="home-section-title">이야기를 만들기 위한 옵션을 선택해주세요 !</h2>
+                    <h2 className="home-section-title">이야기 창조를 위한 키워드와 메세지를 선택해주세요!</h2>
                     <div className="home-input-group">
                         <span className="home-category-label">키워드</span>
                         <input
                             className="home-input-field"
-                            placeholder="우주, 여러 행성"
+                            placeholder="강아지"
                             value={keyword}
                             onChange={(e) => setKeyword(e.target.value)}
                         />
                     </div>
                     <div className="home-input-group">
-                        <span className="home-category-label">메세지</span>
+                        <span className="home-category-label">교훈</span>
                         <input
                             className="home-input-field"
-                            placeholder="짧음, 보통, 장문"
+                            placeholder="양치를 잘하자!"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="home-submit-button" disabled={isLoading}>
+                    <button onClick={handleCreateStory} className="home-submit-button" disabled={isLoading}>
                         <Wand2 size={24}/>
                         {isLoading ? '동화 생성 중...' : '이야기 만들기'}
+                    </button>
+                </div>
+
+                {/* 기존 동화를 각색하는 섹션을 오른쪽으로 이동 */}
+                <div className="home-form-section home-right-section">
+                    <h2 className="home-section-title">기존에 있는 동화를 이용해 각색할 수도 있어요!</h2>
+                    <div className="home-input-group">
+                        <span className="home-category-label">제목</span>
+                        <input
+                            className="home-input-field"
+                            placeholder="흥부와 놀부"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                    </div>
+                    <div className="home-input-group">
+                        <span className="home-category-label">만약 ~라면?</span>
+                        <input
+                            className="home-input-field"
+                            placeholder="제비가 아니라 남자였다면?!"
+                            value={ifCondition}
+                            onChange={(e) => setIfCondition(e.target.value)}
+                        />
+                    </div>
+                    <button onClick={handleAdaptStory} className="home-submit-button" disabled={isLoading}>
+                        <Wand2 size={24}/>
+                        {isLoading ? '동화 각색 중...' : '기존 동화를 각색하기'}
                     </button>
                 </div>
             </form>
