@@ -40,9 +40,9 @@ const Home = () => {
                 title,
                 ifCondition
             });
-            const adaptedStoryId = response.data.storyId; // 서버에서 받은 storyId
+            const storyId = response.data.storyId; // 서버에서 받은 storyId
             setIsLoading(false);
-            navigate(`/mybook/${adaptedStoryId}`); // 각색된 storyId를 URL에 포함하여 전달
+            navigate(`/mybook/${storyId}`); // 각색된 storyId를 URL에 포함하여 전달
         } catch (error) {
             console.error('Error sending request:', error.response ? error.response.data : error.message);
             setIsLoading(false);
