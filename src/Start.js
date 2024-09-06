@@ -22,7 +22,7 @@ function StartPage() {
 
     const handleButtonClick = () => {
         // 버튼 클릭 시 '/' 경로로 이동
-        navigate('/');
+        navigate('/start');
     };
 
     const settings = {
