@@ -1,0 +1,78 @@
+.start-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.start-slider-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.start-image-wrapper {
+    padding: 20px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.start-image-wrapper:hover {
+    transform: scale(1.1);
+}
+
+.slick-slide {
+    opacity: 0.5;
+    transform: scale(0.8);
+    transition: transform 0.9s ease, opacity 0.3s ease;
+}
+
+.slick-center {
+    transform: scale(1.2);
+    opacity: 1 !important;
+}
+
+.start-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+
+.start-submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.start-submit-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.start-submit-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 아이콘 스타일 */
+.start-submit-button svg {
+    transition: transform 0.3s ease;
+}
+
+.start-submit-button:hover svg {
+    transform: rotate(15deg);
+}

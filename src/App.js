@@ -4,6 +4,7 @@ import MyBook from './MyBook';
 import './App.css';
 import Home from "./Home";
 import Book from "./Book";
+import Start from "./Start";
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
             <Route path="/mybook" element={<MyBook />} />
             <Route path="/test" element={<MyBook />} />
             <Route path="/book" element={<Book />} />
+            <Route path="/start" element={<Start />} />
           </Routes>
         </div>
       </Router>

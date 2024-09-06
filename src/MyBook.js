@@ -47,6 +47,17 @@ const MyBook = () => {
         setPage(e.data);
     };
 
+    // 커버 컴포넌트
+    const Cover = ({ isFront }) => (
+        <div className={`book-cover ${isFront ? 'front' : 'back'}`}>
+            {isFront ? (
+                <h1>제목</h1>
+            ) : (
+                <h2>The End</h2>
+            )}
+        </div>
+    );
+
     return (
         <div className="mybook-container">
             <HTMLFlipBook

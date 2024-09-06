@@ -37,14 +37,14 @@
     top: 0;
     width: 30px;
     height: 100%;
-    background: #d4c5a9;
+    background: #e0d8ce;
     transform: rotateY(90deg);
     transform-origin: 0 50%;
 }
 
 .mybook-fairy-tale-book::before {
     left: 0;
-    border-left: 2px solid #b3a589;
+    border-left: 2px solid #fffaed;
 }
 
 .mybook-fairy-tale-book::after {
@@ -55,7 +55,7 @@
 /* 책 내용 한쪽만 */
 .mybook-fairy-tale-page {
     background-color: #fffbfa;
-    border: 1px solid #e0d5b3;
+    border: 1px solid #f5eedc;
     border-radius: 10px 0 0 10px;
     overflow: hidden;
     max-width: 800px;
