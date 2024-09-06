@@ -45,7 +45,7 @@ function StartPage() {
 
     return (
         <div className="start-slider-container">
-            <h1>동화책 만들기</h1>
+            <h1>엄마의 CHAT장</h1>
             <Slider {...settings}>
                 {images.map((src, index) => (
                     <div key={index} className="start-image-wrapper">

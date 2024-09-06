@@ -66,13 +66,14 @@
 
 /* 제출 버튼 */
 .home-submit-button {
+    font-family: 'Diphylleia', cursive;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     padding: 10px;
     font-size: 1.2rem;
-    color: #fff;
+    color: black;
     background-color: #ffd700;
     border: none;
     border-radius: 5px;
