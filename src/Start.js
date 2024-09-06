@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Start.css';
-import { Wand2 } from 'lucide-react';
+import {Eye, Wand2} from 'lucide-react';
 
 // 로컬 이미지 경로
 const images = [
@@ -23,6 +23,11 @@ function StartPage() {
     const handleButtonClick = () => {
         // 버튼 클릭 시 '/' 경로로 이동
         navigate('/start');
+    };
+
+    const handleButtonClick2 = () => {
+        // 버튼 클릭 시 '/list' 경로로 이동
+        navigate('/list');
     };
 
     const settings = {
@@ -50,8 +55,15 @@ function StartPage() {
 
             <button className="start-submit-button" onClick={handleButtonClick}>
                 <Wand2 size={24}/>
-                동화 생성하기
+                새로운 이야기 만들기
             </button>
+
+            {/* '/list'로 이동하는 버튼 */}
+            <button className="start-list-button" onClick={handleButtonClick2}>
+                <Eye size={24}/>
+                기존 이야기 다시보기
+            </button>
+
         </div>
     );
 }

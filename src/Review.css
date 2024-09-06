@@ -1,0 +1,55 @@
+.review-star-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.review-star {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    stroke: #FFD700; /* 기본적으로 비어있는 별 */
+    transition: fill 0.3s ease;
+}
+
+.review-star-filled {
+    fill: #FFD700; /* 호버 또는 클릭 시 채워진 별 */
+}
+
+
+.review-button {
+    background-color: #FF69B4; /* 핑크 계열 배경색 */
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* 캐릭터 밑에 위치 */
+}
+
+.review-button:hover {
+    background-color: #FF1493; /* 호버 시 더 진한 핑크 */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.review-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 아이콘 스타일 */
+.review-button svg {
+    transition: transform 0.3s ease;
+}
+
+.review-button:hover svg {
+    transform: rotate(15deg);
+}

@@ -32,18 +32,18 @@ const Home = () => {
                     <h2 className="section-title">교훈을 선택한 경우</h2>
                     <div className="input-group">
                         <span className="category-label">각색할 원작</span>
-                        <input className="input-field" placeholder="신데렐라" />
+                        <input className="input-field" placeholder="신데렐라"/>
                     </div>
                     <div className="input-group">
                         <span className="category-label">배경</span>
-                        <input className="input-field" placeholder="우주, 여러 행성" />
+                        <input className="input-field" placeholder="우주, 여러 행성"/>
                     </div>
                     <div className="input-group">
                         <span className="category-label">페이지 수</span>
-                        <input className="input-field" placeholder="짧음, 보통, 장문" />
+                        <input className="input-field" placeholder="짧음, 보통, 장문"/>
                     </div>
                     <button type="submit" className="submit-button">
-                        <Wand2 size={24} />
+                        <Wand2 size={24}/>
                         동화 생성하기
                     </button>
                 </div>

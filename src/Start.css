@@ -7,10 +7,11 @@
     background-color: #f0f0f0;
 }
 
+
 .start-slider-container {
     width: 80%;
     margin: 0 auto;
-    padding: 50px 0;
+
 }
 
 .start-image-wrapper {
@@ -42,7 +43,7 @@
 
 
 .start-submit-button {
-    background-color: #4CAF50;
+    background-color: #e689ee;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -58,7 +59,7 @@
 }
 
 .start-submit-button:hover {
-    background-color: #45a049;
+    background-color: #e16eea;
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -74,5 +75,41 @@
 }
 
 .start-submit-button:hover svg {
+    transform: rotate(15deg);
+}
+
+.start-list-button {
+    background-color: #FF69B4; /* 핑크 계열 배경색 */
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.start-list-button:hover {
+    background-color: #FF1493; /* 호버 시 더 진한 핑크 */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.start-list-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 아이콘 스타일 */
+.start-list-button svg {
+    transition: transform 0.3s ease;
+}
+
+.start-list-button:hover svg {
     transform: rotate(15deg);
 }

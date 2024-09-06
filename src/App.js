@@ -5,6 +5,8 @@ import './App.css';
 import Home from "./Home";
 import Book from "./Book";
 import Start from "./Start";
+import List from "./List";
+import Review from "./Review";
 
 
 const App = () => {
@@ -17,6 +19,8 @@ const App = () => {
             <Route path="/test" element={<MyBook />} />
             <Route path="/book" element={<Book />} />
             <Route path="/" element={<Start />} />
+            <Route path="/list" element={<List />} />
+            <Route path="/review" element={<Review />} />
           </Routes>
         </div>
       </Router>
