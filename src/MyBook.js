@@ -23,7 +23,7 @@ const MyBook = () => {
             try {
                 // 전체 데이터를 요청
                 // `${process.env.REACT_APP_API_URL}/api/fairytale/entire`
-                // const response = await axios.get(`http://ec2-43-200-211-225.ap-northeast-2.compute.amazonaws.com:3000/api/fairytale/entire`);
+
                 const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/fairytale/entire`);
                 const story = response.data.find(story => story.storyId === parseInt(storyId, 10)); // storyId로 필터링
                 if (story) {
