@@ -1,0 +1,135 @@
+.start2-body {
+    background-color: #d3e7ff;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.start2-book-page {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 40px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.start2-book-page::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to right, #d9f0ff, #fee9e9);
+}
+
+.start2-h2 {
+    font-size: 1.8em;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.start2-input-group {
+    margin-bottom: 15px;
+}
+
+.start2-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.start2-input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cee0ff;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.start2-button {
+    background-color: #53b4ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+.start2-button:hover {
+    background-color: #575dff;
+}
+
+.start2-button:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}
+
+.start2-story {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 20px;
+    font-style: italic;
+    white-space: pre-wrap;
+}
+
+.start2-error {
+    color: #d8000c;
+    background-color: #ffbaba;
+    border: 1px solid #d8000c;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.start2-story-paragraph {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.start2-story-paragraph p {
+    text-align: justify;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.start2-story-paragraph img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 15px;
+}
+
+@media (min-width: 768px) {
+    .start2-story-paragraph {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .start2-story-paragraph p {
+        width: 60%;
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .start2-story-paragraph img {
+        width: 40%;
+        margin-top: 0;
+    }
+}

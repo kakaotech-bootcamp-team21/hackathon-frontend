@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Start.css';
 import {Eye, Wand2} from 'lucide-react';
+import axios from 'axios';
 
 // 로컬 이미지 경로
 const images = [
