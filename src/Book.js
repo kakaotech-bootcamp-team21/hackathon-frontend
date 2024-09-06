@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
-import './MyBook.css';
+import './Book.css';
 
-const MyBook = () => {
+const Book = () => {
     const [page, setPage] = useState(0);
     const [photos, setPhotos] = useState([]);
 
@@ -12,7 +12,7 @@ const MyBook = () => {
         const fetchPhotos = async () => {
             try {
                 const response = await axios.get('https://jsonplaceholder.typicode.com/photos');
-                setPhotos(response.data.slice(0, 10)); // 처음 10개의 사진만 사용
+                setPhotos(response.data.slice(0, 10));
             } catch (error) {
                 console.error('Error fetching photos:', error);
             }
@@ -48,36 +48,32 @@ const MyBook = () => {
     };
 
     return (
-        <div className="mybook-container">
+        <div className="book-container">
             <HTMLFlipBook
                 width={400}
                 height={600}
-                size="stretch"
-                minWidth={315}
-                maxWidth={1000}
-                minHeight={400}
-                maxHeight={1533}
-                maxShadowOpacity={0.5}
                 showCover={true}
                 mobileScrollSupport={true}
-                className="mybook-fairy-tale-book"
                 onFlip={onFlip}
             >
                 {pages.map((pageData, index) => (
-                    <div key={index} className="mybook-fairy-tale-page">
-                        <div className="mybook-page-content">
-                            <div className="mybook-page-image"
-                                 style={{backgroundImage: `url(${pageData.image})`}}></div>
-                            <div className="mybook-page-text">{pageData.content}</div>
-                            <div className="mybook-page-footer">
-                                <div className="mybook-page-number">{index + 1}</div>
-                            </div>
+                    <div key={index} className="book-fairy-tale-page">
+                        <div className="book-page-content">
+                            <div className="book-page-image" style={{ backgroundImage: `url(${pageData.image})` }}></div>
+                            <div className="book-page-text">{pageData.content}</div>
+                            <div className="book-page-number">{index + 1}</div>
                         </div>
                     </div>
                 ))}
             </HTMLFlipBook>
+            <button className="book-custom-button book-prev" onClick={() => setPage(page - 1)} disabled={page === 0}>
+                <ChevronLeft size={24} />
+            </button>
+            <button className="book-custom-button book-next" onClick={() => setPage(page + 1)} disabled={page === pages.length - 1}>
+                <ChevronRight size={24} />
+            </button>
         </div>
     );
 };
 
-export default MyBook;
+export default Book;

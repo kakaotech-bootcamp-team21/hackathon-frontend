@@ -30,7 +30,6 @@ const Home = () => {
                 </div>
                 <div className="form-section right-section">
                     <h2 className="section-title">교훈을 선택한 경우</h2>
-                    <input className="input-field" placeholder="어떤 교훈을 받았으면 하나요?" />
                     <div className="input-group">
                         <span className="category-label">각색할 원작</span>
                         <input className="input-field" placeholder="신데렐라" />

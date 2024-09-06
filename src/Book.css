@@ -1,0 +1,116 @@
+.book-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* 책 전체 크기를 조절하여 균형을 맞춤 */
+    height: 600px;
+    perspective: 2000px;
+    background-color: #ffffff; /* 배경색 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 책 전체에 그림자 추가 */
+    border-radius: 10px;
+}
+
+
+.book-fairy-tale-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* // 페이지에 그림자 추가 */
+    /*이거 떄문에 오류가 나느거다 !!!!*/
+    /*position: relative; !* 페이지가 쌓여 있는 것처럼 보이게 조정 *!*/
+}
+
+.book-page-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* // 이미지에도 그림자 추가 */
+}
+
+.book-page-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.book-page-number {
+    font-size: 1rem;
+    text-align: center;
+    color: #8a8a8a;
+}
+
+.book-custom-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffd700;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* // 버튼에도 약간의 그림자 추가 */
+}
+
+.book-custom-button:hover {
+    background-color: #ffed4a;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.book-custom-button:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}
+
+.book-prev {
+    left: -60px;
+}
+
+.book-next {
+    right: -60px;
+}
+
+/* // 중앙에 음영 추가 */
+.book-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 20px; /* // 중앙에 추가될 음영의 너비 */
+    transform: translateX(-50%);
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 70%); /* // 중앙을 따라 음영 효과 */
+    z-index: 1; /* // 음영이 페이지보다 뒤에 위치하도록 */
+    pointer-events: none; /* // 음영은 클릭할 수 없게 처리 */
+}
+
+@media (max-width: 768px) {
+    .book-container {
+        max-width: 90%;
+    }
+
+    .book-custom-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .book-prev {
+        left: -45px;
+    }
+
+    .book-next {
+        right: -45px;
+    }
+}

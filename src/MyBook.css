@@ -1,28 +1,83 @@
-/*책을 담는 전체 화면*/
-.book-container {
-    position: relative;
+/* 책을 담는 전체 화면 */
+.mybook-container {
+    /*position: relative;*/
     width: 100%;
-    /*max-width: 800px;*/
     max-width: 1200px;
     height: 600px;
+    perspective: 1000px; /* 3D 효과를 위한 원근감 추가 */
+}
 
-}
-/*두쪽 다 */
-.fairy-tale-book {
-    box-shadow:10px 20px rgba(0, 0, 0, 0.2);
+/* 두쪽 다 */
+.mybook-fairy-tale-book {
+    box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            0 15px 30px rgba(0, 0, 0, 0.3),
+            0 10px 20px rgba(0, 0, 0, 0.2),
+            0 0 40px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: transform 0.5s;
 }
-/*책 내용 한쪽만*/
-.fairy-tale-page {
-    background-color: #fff9e6;
+
+/* 호버 효과 제거 */
+.mybook-fairy-tale-book:hover {
+    box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            0 15px 30px rgba(0, 0, 0, 0.3),
+            0 10px 20px rgba(0, 0, 0, 0.2),
+            0 0 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 책의 두께를 표현하는 요소 */
+.mybook-fairy-tale-book::before,
+.mybook-fairy-tale-book::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    background: #d4c5a9;
+    transform: rotateY(90deg);
+    transform-origin: 0 50%;
+}
+
+.mybook-fairy-tale-book::before {
+    left: 0;
+    border-left: 2px solid #b3a589;
+}
+
+.mybook-fairy-tale-book::after {
+    right: 0;
+    border-right: 2px solid #b3a589;
+}
+
+/* 책 내용 한쪽만 */
+.mybook-fairy-tale-page {
+    background-color: #fffbfa;
     border: 1px solid #e0d5b3;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     overflow: hidden;
     max-width: 800px;
-
+    box-shadow:
+            inset -10px 0 20px -10px rgba(0, 0, 0, 0.2),
+            -10px 0 30px -10px rgba(0, 0, 0, 0.3);
 }
-/*실제 책 내용*/
-.page-content {
+
+/* 책의 중앙 부분 음영 */
+.mybook-fairy-tale-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0));
+    pointer-events: none;
+}
+
+/* 실제 책 내용 */
+.mybook-page-content {
     width: 100%;
     height: 100%;
     display: flex;
@@ -30,19 +85,19 @@
     justify-content: space-between;
     padding: 20px;
     box-sizing: border-box;
-
 }
 
-.page-image {
+.mybook-page-image {
     width: 100%;
     height: 500px;
     background-size: cover;
     background-position: center;
     border-radius: 10px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.page-text {
+.mybook-page-text {
     flex-grow: 1;
     font-size: 1.5rem;
     line-height: 1.6;
@@ -50,13 +105,13 @@
     text-align: center;
 }
 
-.page-number {
+.mybook-page-number {
     font-size: 1.2rem;
     text-align: center;
     color: #8a8a8a;
 }
 
-.custom-button {
+.mybook-custom-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -70,42 +125,99 @@
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
-.custom-button:hover {
+.mybook-custom-button:hover {
     background-color: #ffed4a;
     transform: translateY(-50%) scale(1.1);
 }
 
-.custom-button:disabled {
+.mybook-custom-button:disabled {
     background-color: #d3d3d3;
     cursor: not-allowed;
 }
 
-.custom-button.prev {
+.mybook-custom-button.prev {
     left: -60px;
 }
 
-.custom-button.next {
+.mybook-custom-button.next {
     right: -60px;
 }
 
 @media (max-width: 768px) {
-    .book-container {
+    .mybook-container {
         max-width: 90%;
     }
 
-    .custom-button {
+    .mybook-custom-button {
         width: 40px;
         height: 40px;
     }
 
-    .custom-button.prev {
+    .mybook-custom-button.prev {
         left: -45px;
     }
 
-    .custom-button.next {
+    .mybook-custom-button.next {
         right: -45px;
     }
+}
+
+
+.mybook-fairy-tale-book::before,
+.mybook-fairy-tale-book::after,
+.mybook-fairy-tale-page::before,
+.mybook-fairy-tale-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    background: #d4c5a9;
+    transform: rotateY(90deg);
+}
+
+
+
+.mybook-fairy-tale-book::before,
+.mybook-fairy-tale-page::before {
+    left: 0;
+    transform-origin: left;
+    border-left: 2px solid #b3a589;
+}
+
+.mybook-fairy-tale-book::after,
+.mybook-fairy-tale-page::after {
+    right: 0;
+    transform-origin: right;
+    border-right: 2px solid #b3a589;
+}
+
+
+/* 페이지 숫자와 선을 포함하는 컨테이너 */
+.mybook-page-footer {
+    position: relative;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+/* 페이지 숫자 위의 선 */
+.mybook-page-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1%;
+    right: 1%;
+    height: 1px;
+    background-color: #e0d5b3; /* 베이지색 선 */
+}
+
+/* 페이지 숫자 스타일 */
+.mybook-page-number {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #8a8a8a;
 }
