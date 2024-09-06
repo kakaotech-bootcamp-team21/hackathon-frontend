@@ -1,126 +1,110 @@
+/* 전체 화면 컨테이너 */
 .home-container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.storybook-form {
+/* 스토리북 폼 */
+.home-storybook-form {
     display: flex;
-    width: 90%;
-    height: 80%;
-    background-color: #ffffff;
+    background-color: #fffbfa;
+    border: 1px solid #f5eedc;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            0 15px 30px rgba(0, 0, 0, 0.3),
+            0 10px 20px rgba(0, 0, 0, 0.2),
+            0 0 40px rgba(0, 0, 0, 0.1);
 }
 
-.form-section {
+/* 폼 섹션 */
+.home-form-section {
     flex: 1;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
+    padding: 20px;
 }
 
-.left-section {
-    background-color: #fff9c4;
+.home-left-section {
+    background-color: #e0d8ce;
 }
 
-.right-section {
-    background-color: #ffcc80;
+.home-right-section {
+    background-color: #fffbfa;
 }
 
-.question {
-    background-color: white;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    text-align: center;
+/* 섹션 제목 */
+.home-section-title {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+}
+
+/* 입력 그룹 */
+.home-input-group {
+    margin-bottom: 20px;
+    width: 70%;
+}
+
+/* 카테고리 라벨 */
+.home-category-label {
+    display: block;
     font-size: 1.2rem;
+    color: #8a8a8a;
+    margin-bottom: 5px;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.option-button {
-    background-color: #ffcccb;
-    border: none;
-    padding: 0.5rem 2rem;
-    border-radius: 5px;
-    cursor: pointer;
+/* 입력 필드 */
+.home-input-field {
+    width: 100%;
+    padding: 10px;
     font-size: 1rem;
-}
-
-.input-group {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-}
-
-.category-label {
-    background-color: #ffcccb;
-    padding: 0.5rem 1rem;
+    border: 1px solid #e0d5b3;
     border-radius: 5px;
-    font-size: 0.9rem;
-    white-space: nowrap;
 }
 
-.input-field {
-    background-color: white;
-    padding: 0.7rem;
-    border-radius: 5px;
-    flex-grow: 1;
-    margin-left: 0.5rem;
-    border: 1px solid #ddd;
-}
-
-.section-title {
-    background-color: #7e57c2;
-    color: white;
-    padding: 0.7rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.submit-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* 제출 버튼 */
+.home-submit-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #ffd700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.submit-button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+.home-submit-button:hover {
+    background-color: #ffed4a;
 }
 
-.submit-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.home-submit-button:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
 }
 
-/* 아이콘 스타일 */
-.submit-button svg {
-    transition: transform 0.3s ease;
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .home-storybook-form {
+        flex-direction: column;
+    }
+
+    .home-form-section {
+        width: 100%;
+    }
 }
 
-.submit-button:hover svg {
-    transform: rotate(15deg);
+.home-magic-image {
+    width: 50%; /* Adjust the width to fit the container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for better visual effect */
+    display: block; /* Ensures the image is treated as a block-level element */
+    margin: 20px auto; /* Center the image and add some space around it */
 }

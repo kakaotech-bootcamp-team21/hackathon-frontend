@@ -53,7 +53,7 @@ function StartPage() {
                     </div>
                 ))}
             </Slider>
-
+<div style={{display: "flex", justifyContent: "space-between", marginTop: "30px"}}>
             <button className="start-submit-button" onClick={handleButtonClick}>
                 <Wand2 size={24}/>
                 새로운 이야기 만들기
@@ -64,7 +64,7 @@ function StartPage() {
                 <Eye size={24}/>
                 기존 이야기 다시보기
             </button>
-
+</div>
         </div>
     );
 }

@@ -14,7 +14,9 @@ const loadingImages = [
 
 const MyBook = () => {
     const [page, setPage] = useState(0);
-    const [storyData, setStoryData] = useState(null);
+    // const [storyData, setStoryData] = useState(null);
+    // 오류주의 !!! - 서버에서는 배열로 받음
+    const [storyData, setStoryData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [loadedImages, setLoadedImages] = useState({}); // 이미지 로드 상태 저장
     const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 추가
@@ -23,8 +25,9 @@ const MyBook = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // 서버로부터 데이터를 요청
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/creation`);
+                // 하드코딩된 서버 URL로 데이터를 요청
+                const response = await axios.get(`http://ec2-43-200-211-225.ap-northeast-2.compute.amazonaws.com:3000/api/fairytale/entire`);
+                // 응답 데이터 저장
                 setStoryData(response.data);
                 setIsLoading(false); // 데이터 로드 완료 시 로딩 상태 해제
             } catch (error) {
@@ -33,23 +36,41 @@ const MyBook = () => {
             }
         };
 
-        fetchData();
-    }, []);
+        fetchData(); // 데이터 요청 함수 호출
+    }, []); // 의존성 배열은 빈 배열로 설정, 컴포넌트 마운트 시에만 실행
 
+    // 페이지 생성 함수 수정: storyData가 배열임을 감안하여 처리
     const generatePages = () => {
-        if (storyData) {
-            return storyData.parts.map((part) => ({
+        if (storyData.length > 0) {
+            return storyData[0].parts.map((part) => ({
                 content: part.content,
-                image: part.imageUrl
+                image: part.imageUri // 서버에서 온 데이터의 imageUri 사용
             }));
         } else {
-            // 로딩 중일 때 페이지당 하나의 로딩 이미지를 순차적으로 표시
+            // 로딩 중일 때 임시 이미지를 순차적으로 표시
             return Array(10).fill(null).map((_, index) => ({
                 content: "열심히 그림 그리는 중...",
-                image: loadingImages[index % loadingImages.length] // 각 페이지마다 로딩 이미지를 순차적으로 표시
+                image: loadingImages[index % loadingImages.length]
             }));
         }
     };
+
+
+    // const generatePages = () => {
+    //     if (storyData && storyData.parts) {
+    //         return storyData.parts.map((part) => ({
+    //             content: part.content,
+    //             //오류주의!!! -  여기 url 을 uri 로 보냄 서버에서는 오류 있을수도 있으니 확인할것
+    //             image: part.imageUri
+    //         }));
+    //     } else {
+    //         // 로딩 중일 때 페이지당 하나의 로딩 이미지를 순차적으로 표시
+    //         return Array(10).fill(null).map((_, index) => ({
+    //             content: "열심히 그림 그리는 중...",
+    //             image: loadingImages[index % loadingImages.length] // 각 페이지마다 로딩 이미지를 순차적으로 표시
+    //         }));
+    //     }
+    // };
 
     const pages = generatePages();
 

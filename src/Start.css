@@ -43,7 +43,8 @@
 
 
 .start-submit-button {
-    background-color: #e689ee;
+    font-family: 'Diphylleia', cursive;
+    background-color: #a8d98b;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -59,7 +60,7 @@
 }
 
 .start-submit-button:hover {
-    background-color: #e16eea;
+    background-color: #79cc48;
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -79,7 +80,8 @@
 }
 
 .start-list-button {
-    background-color: #FF69B4; /* 핑크 계열 배경색 */
+    font-family: 'Diphylleia', cursive;
+    background-color: #f596c5; /* 핑크 계열 배경색 */
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -113,3 +115,4 @@
 .start-list-button:hover svg {
     transform: rotate(15deg);
 }
+
