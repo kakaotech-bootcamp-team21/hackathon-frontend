@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Wand2 } from 'lucide-react';
 import Loading from './Loading';
 import './Home.css';
 
@@ -21,7 +22,7 @@ const Home = () => {
             {isLoading && <Loading />}
             <form onSubmit={handleSubmit} className="storybook-form">
                 <div className="form-section left-section">
-                    <div className="question">원작을 볼건가요 안볼건가요?</div>
+                    <h2 className="section-title">원작을 볼건가요 안볼건가요?</h2>
                     <div className="buttons">
                         <button type="button" className="option-button">예</button>
                         <button type="button" className="option-button">아니오</button>
@@ -29,20 +30,23 @@ const Home = () => {
                 </div>
                 <div className="form-section right-section">
                     <h2 className="section-title">교훈을 선택한 경우</h2>
-                    <div className="input-field">어떤 교훈을 이야기 발장으면 하나요?</div>
+                    <input className="input-field" placeholder="어떤 교훈을 받았으면 하나요?" />
                     <div className="input-group">
                         <span className="category-label">각색할 원작</span>
-                        <div className="input-field">신데렐라</div>
+                        <input className="input-field" placeholder="신데렐라" />
                     </div>
                     <div className="input-group">
                         <span className="category-label">배경</span>
-                        <div className="input-field">우주, 여러 행성</div>
+                        <input className="input-field" placeholder="우주, 여러 행성" />
                     </div>
                     <div className="input-group">
                         <span className="category-label">페이지 수</span>
-                        <div className="input-field">짧음, 보통, 장문</div>
+                        <input className="input-field" placeholder="짧음, 보통, 장문" />
                     </div>
-                    <button type="submit" className="submit-button">생성버튼</button>
+                    <button type="submit" className="submit-button">
+                        <Wand2 size={24} />
+                        동화 생성하기
+                    </button>
                 </div>
             </form>
         </div>
