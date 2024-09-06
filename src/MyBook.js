@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import axios from 'axios';
 import './MyBook.css';
 
 const MyBook = () => {
     const [page, setPage] = useState(0);
+    const [photos, setPhotos] = useState([]);
+
+    useEffect(() => {
+        const fetchPhotos = async () => {
+            try {
+                const response = await axios.get('https://jsonplaceholder.typicode.com/photos');
+                setPhotos(response.data.slice(0, 10)); // 처음 10개의 사진만 사용
+            } catch (error) {
+                console.error('Error fetching photos:', error);
+            }
+        };
+
+        fetchPhotos();
+    }, []);
 
     const generatePages = () => {
         const storyContent = [
@@ -22,7 +37,7 @@ const MyBook = () => {
 
         return storyContent.map((content, index) => ({
             content,
-            image: `/images/page${index + 1}.jpg`
+            image: photos[index] ? photos[index].url : ''
         }));
     };
 
@@ -33,8 +48,10 @@ const MyBook = () => {
     };
 
     return (
+
+
         <div className="book-container">
-            <h1>마법의 동화책</h1>
+            <h2>마법의 동화책</h2>
             <HTMLFlipBook
                 width={400}
                 height={600}
@@ -59,13 +76,9 @@ const MyBook = () => {
                     </div>
                 ))}
             </HTMLFlipBook>
-            <button className="custom-button prev" onClick={() => setPage(page - 1)} disabled={page === 0}>
-                <ChevronLeft />
-            </button>
-            <button className="custom-button next" onClick={() => setPage(page + 1)} disabled={page === pages.length - 1}>
-                <ChevronRight />
-            </button>
+
         </div>
+
     );
 };
 

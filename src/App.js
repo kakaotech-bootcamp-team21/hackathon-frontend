@@ -2,13 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import MyBook from './MyBook';
 import './App.css';
+import Home from "./Home";
 
-const Home = () => (
-    <div className="home">
-      <h1>Welcome to the Magic Storybook</h1>
-      <Link to="/mybook">Go to Storybook</Link>
-    </div>
-);
 
 const App = () => {
   return (

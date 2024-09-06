@@ -1,22 +1,27 @@
+/*책을 담는 전체 화면*/
 .book-container {
     position: relative;
     width: 100%;
-    max-width: 800px;
+    /*max-width: 800px;*/
+    max-width: 1200px;
     height: 600px;
-}
 
+}
+/*두쪽 다 */
 .fairy-tale-book {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow:10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
-
+/*책 내용 한쪽만*/
 .fairy-tale-page {
     background-color: #fff9e6;
     border: 1px solid #e0d5b3;
     border-radius: 10px;
     overflow: hidden;
-}
+    max-width: 800px;
 
+}
+/*실제 책 내용*/
 .page-content {
     width: 100%;
     height: 100%;
@@ -25,11 +30,12 @@
     justify-content: space-between;
     padding: 20px;
     box-sizing: border-box;
+
 }
 
 .page-image {
     width: 100%;
-    height: 300px;
+    height: 500px;
     background-size: cover;
     background-position: center;
     border-radius: 10px;
